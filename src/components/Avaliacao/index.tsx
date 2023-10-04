@@ -14,11 +14,15 @@ function Avaliacao({ profissionais }: { profissionais: IProfissional[] | null })
     return (
         <>
             <SecaoCard>
-                {profissionais?.map((profissional) => {
-                    return <Card profissional={profissional} />
-                })}
+                {profissionais && profissionais.length ?
+                    profissionais?.map((profissional) => {
+                        return <Card profissional={profissional} />
+                    }) : 'nao ha avaliaçẽs para mostrar'}
             </SecaoCard>
-            <Botao>Ver mais</Botao>
+            {
+                profissionais && profissionais.length >= 4 ?
+                    <Botao>Ver mais</Botao> : ''
+            }
         </>
     )
 }
