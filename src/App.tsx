@@ -9,19 +9,15 @@ import Subtitulo from './components/Subtitulo';
 import Tabela from './components/Tabela';
 import Titulo from './components/Titulo';
 import Dashbord from './pages/Dashboard';
+import AppRoutes from './routes/AppRoutes';
 import useDadosConsulta from './useDadosConsulta';
 import useDadosProfissional from './useDadosProfissional';
 
 function App() {
-  const { dados: consultas, erro: consultasErro } = useDadosConsulta();
-  const { dados: profissionais, erro: profissionaisErro } = useDadosProfissional();
 
-  if (consultasErro || profissionaisErro) {
-    console.log("Ocorreu um erro na requisição")
-  }
 
   return (
-    <Dashbord />
+    <AppRoutes />
   );
 }
 
