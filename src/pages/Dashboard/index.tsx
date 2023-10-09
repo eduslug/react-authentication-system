@@ -20,18 +20,20 @@ export default function Dashbord() {
     }
     return (
 
+        <>
 
-        <Container>
-            <Titulo>Área Administrativa</Titulo>
-            <Botao>Cadastrar especialista</Botao>
-            <Titulo imagem="consulta">Consultas do Dia</Titulo>
-            <Tabela consultas={consultas} />
-            <Titulo imagem="grafico">Consultas mensais por especialista</Titulo>
-            <Subtitulo>Dezembro/22</Subtitulo>
-            <Grafico consultas={consultas} profissionais={profissionais} />
-            <Titulo imagem="avaliacao">Avaliações de especialistas</Titulo>
-            <Avaliacao profissionais={profissionais} />
-        </Container>
+            <Container>
+                <Titulo>Área Administrativa</Titulo>
+                <Botao>Cadastrar especialista</Botao>
+                <Titulo imagem="consulta">Consultas do Dia</Titulo>
+                <Tabela consultas={consultas} />
+                <Titulo imagem="grafico">Consultas mensais por especialista</Titulo>
+                <Subtitulo>Dezembro/22</Subtitulo>
+                <Grafico consultas={consultas} profissionais={profissionais} />
+                <Titulo imagem="avaliacao">Avaliações de especialistas</Titulo>
+                <Avaliacao profissionais={profissionais} />
+            </Container>
+        </>
 
     )
 }
