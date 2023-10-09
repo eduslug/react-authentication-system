@@ -21,7 +21,7 @@ export default function Dashbord() {
     return (
 
         <>
-            <Cabecalho />
+
             <Container>
                 <Titulo>Área Administrativa</Titulo>
                 <Botao>Cadastrar especialista</Botao>
@@ -33,7 +33,6 @@ export default function Dashbord() {
                 <Titulo imagem="avaliacao">Avaliações de especialistas</Titulo>
                 <Avaliacao profissionais={profissionais} />
             </Container>
-            <Rodape />
         </>
 
     )
