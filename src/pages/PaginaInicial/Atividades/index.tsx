@@ -1,9 +1,9 @@
 
 import styled from "styled-components"
-/* import escudo from './assets/escudo.png'
+import escudo from './assets/escudo.png'
 import calendario from './assets/calendario.png'
 import like from './assets/like.png'
-import sino from './assets/sino.png' */
+import sino from './assets/sino.png'
 
 
 const Container = styled.section`
@@ -30,19 +30,19 @@ export default function Atividades() {
     return (
         <Container>
             <Bloco>
-                <img /* src={escudo} */ alt="Escudo" />
+                <img  src={escudo}  alt="Escudo" />
                 <Texto>Encontre Especialistas</Texto>
             </Bloco>
             <Bloco>
-                <img /* src={calendario}  */alt="Calendário" />
+                <img  src={calendario}  alt="Calendário" />
                 <Texto>Agende consultas</Texto>
             </Bloco>
             <Bloco>
-                <img /* src={sino} */ alt="Sino" />
+                <img src={sino}  alt="Sino" />
                 <Texto>Defina lembretes</Texto>
             </Bloco>
             <Bloco>
-                <img /* src={like}  */alt="Avaliação" />
+                <img  src={like}  alt="Avaliação" />
                 <Texto>Avalie o serviço</Texto>
             </Bloco>
         </Container>
