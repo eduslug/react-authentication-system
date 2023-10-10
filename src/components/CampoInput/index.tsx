@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Botao from "../Botao";
 
 const Campo = styled.input`
 background: #F0F0F0;
@@ -27,11 +28,11 @@ interface Props {
   valor: string,
   tipo: string,
   placeholder: string,
-  trocar: (value: string) => void,
+  onChange: (value: string) => void,
   label?: string
 }
 
-export default function CampoDigitacao({ valor, tipo, placeholder, trocar, label }: Props) {
+export default function CampoDigitacao({ valor, tipo, placeholder, onChange, label }: Props) {
   return (
     <Container>
       <Rotulo>{label}</Rotulo>
@@ -39,10 +40,10 @@ export default function CampoDigitacao({ valor, tipo, placeholder, trocar, label
         type={tipo}
         value={valor}
         placeholder={placeholder}
-        onChange={(e) => trocar(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
         required
       />
-    </Container>
-    
+      </Container>
+
   )
 }
