@@ -2,7 +2,9 @@
 import styled from 'styled-components';
 import imagem from './logo.png'
 import { Step, StepLabel, Stepper } from '@mui/material';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import CampoDigitacao from '../../components/CampoInput';
+import Botao from '../../components/Botao';
 
 
 const Imagem = styled.img`
@@ -12,7 +14,7 @@ const Imagem = styled.img`
 const Titulo = styled.h2`
   font-weight: 700;
   font-size: 24px;
-  line-height: 28px;
+  line-height: 28px;    
   color: var(--cinza)
 `;
 
@@ -30,7 +32,6 @@ const ParagrafoCadastro = styled(Paragrafo)`
 interface PropsCustomized {
     cor: string,
 
-
 }
 
 const StepCustomized = styled.div<PropsCustomized>`
@@ -39,18 +40,25 @@ const StepCustomized = styled.div<PropsCustomized>`
     height: 16px;
     border-radius: 50%;
     `
-
-
+const Formulario = styled.form`
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const BotaoCustomizado = styled(Botao)`
+  width: 50%;
+  cursor: pointer;
+`;
 export default function Cadastro() {
-    const [stepper, serStepper] = useState([{ activeStep: 0 }])
-
-    const addForm = () => {
-        serStepper(stepper.concat({ activeStep: 0 }));
-    };
-
-
-
+    const [nome, setNome] = useState('')
+    const [cnpj, setCnpj] = useState('')
+    const [email, setEmail] = useState('')
+    const [senha, setSenha] = useState('')
+    const [repita, setRepita] = useState('')
     return (
+
+
         <>
             <Imagem src={imagem} alt='logo' />
             <Stepper>
@@ -65,7 +73,17 @@ export default function Cadastro() {
                     </StepLabel>
                 </Step>
             </Stepper>
-                        
+            <>
+                <Titulo>Primeiro, alguns dados básicos:</Titulo>
+                <Formulario>
+                    <CampoDigitacao tipo="nome" label="nome" valor={nome} onChange={setNome} placeholder='Digite seu nome' />
+                    <CampoDigitacao tipo="cnpj" label="Cnpj" valor={cnpj} onChange={setCnpj} placeholder='Digite seu nome' />
+                    <CampoDigitacao tipo="email" label="email" valor={email} onChange={setEmail} placeholder='Digite seu nome' />
+                    <CampoDigitacao tipo="senha" label="senha" valor={senha} onChange={setSenha} placeholder='Digite seu nome' />
+                    <CampoDigitacao tipo="repita" label="Repita" valor={repita} onChange={setRepita} placeholder='Digite seu nome' />
+                    <BotaoCustomizado type='submit'>Avançar</BotaoCustomizado>
+                </Formulario>
+            </>
         </>
     )
 }
