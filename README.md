@@ -1,3 +1,71 @@
+## Indice
+
+- [Sobre](#-sobre)
+- [Preview do projeto](#-preview-do-projeto)
+- [Tecnologias utilizadas](#-tecnologias-utilizadas)
+- [Funcionalidades](#-Funcionalidades)
+- [Como baixar o projeto](#-como-baixar-o-projeto)
+
+---
+
+## 🚀 Sobre
+
+Projeto **Dashbord**,Este projeto faz parte da escola Front-end e tem como objetivo ensinar a construção de uma página de área administrativa utilizando React com Typescript e as bibliotecas Styled-Components, MUI e Recharts.
+
+---
+
+## 📱 Preview do projeto
+
+![Captura de tela de 2023-10-13 18-01-06](https://github.com/eduslug/react-authentication-system/assets/38886580/4551e8fa-3c3e-416f-b35e-df2f4cf34e5a)
+  
+
+
+
+
+
+## 💻 Tecnologias utilizadas
+
+O projeto foi feito utilizando das seguintes tecnologias
+
+- Material Mui
+- React 
+- Styled-Components
+- Typescript
+- Axios
+- Reanimated V2
+- 
+---
+
+## 💻 Funcionalidades
+
+- Cadastrar Usuario 
+
+- Visualizar detalhes 
+
+- Listar 
+
+- Listar 
+
+---
+
+## 📦 Como baixar o projeto
+
+```bash
+  #clonar o repositorio
+  $ git clone https://github.com/react-authentication-system
+
+  #entrar na pasta do projeto
+  $ cd react-authentication-system
+
+  #instalar as dependencias
+  $ npm
+
+  #Basta ler o QR CODE, com isso o projeto deverá abrir
+  $ npm run start
+
+
+```
+
 
 # React com Typescript: desenvolvendo uma área administrativa
 
