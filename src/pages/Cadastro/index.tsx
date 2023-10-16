@@ -61,7 +61,10 @@ export default function Cadastro() {
     const [cnpj, setCnpj] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [repita, setRepita] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [cep, setCep] = useState('');
+    const [endeco, setRua] = useState('');
+    const [steppers, setSteppers] = useState([{ activeStep: 0 }]);
 
     const navigate = useNavigate(); // Corrected the useNavigate usage
 
@@ -70,8 +73,11 @@ export default function Cadastro() {
         // You can add form submission logic here
         // For example, redirect to another page after submission
         navigate('/login');
-    };
+        alert('login teste')
+        setSteppers(steppers.concat({ activeStep: 0 }));
 
+    };
+    console.log(handleSubmit)
     return (
         <>
             <Imagem src={imagem} alt='logo' />
@@ -125,8 +131,8 @@ export default function Cadastro() {
                     <CampoDigitacao
                         tipo='password'
                         label='Repita'
-                        valor={repita}
-                        onChange={setRepita}
+                        valor={telefone}
+                        onChange={setTelefone}
                         placeholder='Digite seu nome'
                     />
                     <BotaoCustomizado type='submit'>Avançar</BotaoCustomizado>
