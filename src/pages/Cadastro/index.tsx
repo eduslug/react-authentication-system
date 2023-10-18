@@ -66,8 +66,9 @@ export default function Cadastro() {
     const [cep, setCep] = useState('');
     const [rua, setRua] = useState('');
     const [complemento, setComplemento] = useState('');
+    const [numero, setNumero] = useState('');
     const [steppers, setSteppers] = useState([{ activeStep: 0 }]);
-
+    const [estado, setEstado] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -75,19 +76,20 @@ export default function Cadastro() {
         navigate('/login');
         alert('login teste')
         setSteppers(steppers.concat({ activeStep: 0 }));
-        
+
         const clinica: Iclinica = {
             email: email,
             nome: nome,
             senha: senha,
-            endeco: {
+            endereco: {
                 cep: cep,
                 rua: rua,
-                /* numero: numero, */
-                complemento: complemento
-
+                numero: numero,
+                complemento: complemento,
+                estado: estado,
             }
         }
+
 
     };
     console.log(handleSubmit)
@@ -149,44 +151,44 @@ export default function Cadastro() {
                         placeholder='Digite seu nome'
                     />
                     <BotaoCustomizado type='submit'>Avançar</BotaoCustomizado>
+
                 </Formulario>
-                <Formulario>
-                    <CampoDigitacao
-                        tipo='text'
-                        label='endereco'
-                        valor='{endeco}'
-                        onChange={setComplemento}
-                        placeholder='digite seu endereço'
-                    />
-                    <CampoDigitacao
-                        tipo='text'
-                        label='endereco'
-                        valor='{endeco}'
-                        onChange={setComplemento}
-                        placeholder='digite seu endereço'
-                    />
-                    <CampoDigitacao
-                        tipo='text'
-                        label='endereco'
-                        valor='{endeco}'
-                        onChange={setComplemento}
-                        placeholder='digite seu endereço'
-                    />
-                    <CampoDigitacao
-                        tipo='text'
-                        label='cep'
-                        valor='{cep}'
-                        onChange={setCep}
-                        placeholder='digite seu CEP:'
-                    />
-                    <CampoDigitacao
-                        tipo='text'
-                        label='rua'
-                        valor='{rua}'
-                        onChange={setRua}
-                        placeholder='digite sua rua'
-                    />
-                </Formulario>
+
+                <>
+                    <Titulo>Agora, os dados técnicos:</Titulo>
+                    <Formulario>
+                        {/*  <CampoDigitacao
+                            tipo='text'
+                            label='endereco'
+                            valor={endereco}
+                            onChange={setComplemento}
+                            placeholder='digite seu endereço'
+                        />
+ */}
+                        <CampoDigitacao
+                            tipo='text'
+                            label='cep'
+                            valor={cep}
+                            onChange={setCep}
+                            placeholder='digite seu CEP:'
+                        />
+                        <CampoDigitacao
+                            tipo='text'
+                            label='rua'
+                            valor={rua}
+                            onChange={setRua}
+                            placeholder='digite sua rua'
+                        />
+                        <CampoDigitacao
+                            tipo='text'
+                            label='estado'
+                            valor={estado}
+                            onChange={setEstado}
+                            placeholder='digite seu estado'
+                        />
+                        <BotaoCustomizado type='submit'>Avançar</BotaoCustomizado>
+                    </Formulario>
+                </>
             </>
         </>
     );
