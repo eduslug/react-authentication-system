@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 
 export default function usePost() {
@@ -16,5 +15,5 @@ export default function usePost() {
       setErro("nao foi possivel enviar os dados");
     }
   }
-  return { cadastrar, sucesso, erro };
+  return { cadastrar, sucesso, erro }; 
 }
