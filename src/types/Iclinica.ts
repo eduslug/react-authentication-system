@@ -1,12 +1,8 @@
-import Cadastro from "../pages/Cadastro";
+import IEndereco from "./IEndereco";
 
 export default interface Iclinica {
     email: string;
     nome: string;
     senha: string;
-    endeco: {
-        cep: string;
-        rua: string;
-        complemento: string;
-    };
+    endereco: IEndereco 
 }
