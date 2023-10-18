@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import CampoDigitacao from '../../components/CampoInput';
 import Botao from '../../components/Botao';
 import { Navigate, useNavigate } from 'react-router-dom';
+import Iclinica from '../../types/Iclinica';
 
 const Imagem = styled.img`
   padding: 2em 0;
@@ -63,18 +64,30 @@ export default function Cadastro() {
     const [senha, setSenha] = useState('');
     const [telefone, setTelefone] = useState('');
     const [cep, setCep] = useState('');
-    const [endeco, setRua] = useState('');
+    const [rua, setRua] = useState('');
+    const [complemento, setComplemento] = useState('');
     const [steppers, setSteppers] = useState([{ activeStep: 0 }]);
 
-    const navigate = useNavigate(); // Corrected the useNavigate usage
+    const navigate = useNavigate();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        // You can add form submission logic here
-        // For example, redirect to another page after submission
         navigate('/login');
         alert('login teste')
         setSteppers(steppers.concat({ activeStep: 0 }));
+        
+        const clinica: Iclinica = {
+            email: email,
+            nome: nome,
+            senha: senha,
+            endeco: {
+                cep: cep,
+                rua: rua,
+                /* numero: numero, */
+                complemento: complemento
+
+            }
+        }
 
     };
     console.log(handleSubmit)
@@ -136,6 +149,43 @@ export default function Cadastro() {
                         placeholder='Digite seu nome'
                     />
                     <BotaoCustomizado type='submit'>Avançar</BotaoCustomizado>
+                </Formulario>
+                <Formulario>
+                    <CampoDigitacao
+                        tipo='text'
+                        label='endereco'
+                        valor='{endeco}'
+                        onChange={setComplemento}
+                        placeholder='digite seu endereço'
+                    />
+                    <CampoDigitacao
+                        tipo='text'
+                        label='endereco'
+                        valor='{endeco}'
+                        onChange={setComplemento}
+                        placeholder='digite seu endereço'
+                    />
+                    <CampoDigitacao
+                        tipo='text'
+                        label='endereco'
+                        valor='{endeco}'
+                        onChange={setComplemento}
+                        placeholder='digite seu endereço'
+                    />
+                    <CampoDigitacao
+                        tipo='text'
+                        label='cep'
+                        valor='{cep}'
+                        onChange={setCep}
+                        placeholder='digite seu CEP:'
+                    />
+                    <CampoDigitacao
+                        tipo='text'
+                        label='rua'
+                        valor='{rua}'
+                        onChange={setRua}
+                        placeholder='digite sua rua'
+                    />
                 </Formulario>
             </>
         </>

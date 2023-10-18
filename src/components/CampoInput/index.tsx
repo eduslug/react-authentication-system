@@ -43,7 +43,7 @@ export default function CampoDigitacao({ valor, tipo, placeholder, onChange, lab
         onChange={(e) => onChange(e.target.value)}
         required
       />
-      </Container>
+    </Container>
 
   )
 }
