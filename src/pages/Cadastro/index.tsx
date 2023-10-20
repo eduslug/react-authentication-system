@@ -6,6 +6,7 @@ import CampoDigitacao from '../../components/CampoInput';
 import Botao from '../../components/Botao';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Iclinica from '../../types/Iclinica';
+import usePost from '../../usePost';
 
 const Imagem = styled.img`
   padding: 2em 0;
@@ -70,7 +71,8 @@ export default function Cadastro() {
     const [steppers, setSteppers] = useState([{ activeStep: 0 }]);
     const [estado, setEstado] = useState('');
     const navigate = useNavigate();
-
+    const { cadastrar, erro, sucesso } = usePost();
+    const [etapaAtiva, setEtapaAtiva] = useState();
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         navigate('/login');
@@ -89,10 +91,15 @@ export default function Cadastro() {
                 estado: estado,
             }
         }
-
+        if (etapaAtiva !== 0) {
+            try {
+                cadastrar({ url: 'clinica', dados: clinica })
+            } catch (erro) {
+                erro && alert('Erro ao cadastrar os dados')
+            }
+        }
 
     };
-    console.log(handleSubmit)
     return (
         <>
             <Imagem src={imagem} alt='logo' />
@@ -150,44 +157,31 @@ export default function Cadastro() {
                         onChange={setTelefone}
                         placeholder='Digite seu nome'
                     />
-                    <BotaoCustomizado type='submit'>Avançar</BotaoCustomizado>
-
-                </Formulario>
-
-                <>
                     <Titulo>Agora, os dados técnicos:</Titulo>
-                    <Formulario>
-                        {/*  <CampoDigitacao
-                            tipo='text'
-                            label='endereco'
-                            valor={endereco}
-                            onChange={setComplemento}
-                            placeholder='digite seu endereço'
-                        />
- */}
-                        <CampoDigitacao
-                            tipo='text'
-                            label='cep'
-                            valor={cep}
-                            onChange={setCep}
-                            placeholder='digite seu CEP:'
-                        />
-                        <CampoDigitacao
-                            tipo='text'
-                            label='rua'
-                            valor={rua}
-                            onChange={setRua}
-                            placeholder='digite sua rua'
-                        />
-                        <CampoDigitacao
-                            tipo='text'
-                            label='estado'
-                            valor={estado}
-                            onChange={setEstado}
-                            placeholder='digite seu estado'
-                        />
-                        <BotaoCustomizado type='submit'>Avançar</BotaoCustomizado>
-                    </Formulario>
+                    <CampoDigitacao
+                        tipo='text'
+                        label='cep'
+                        valor={cep}
+                        onChange={setCep}
+                        placeholder='digite seu CEP:'
+                    />
+                    <CampoDigitacao
+                        tipo='text'
+                        label='rua'
+                        valor={rua}
+                        onChange={setRua}
+                        placeholder='digite sua rua'
+                    />
+                    <CampoDigitacao
+                        tipo='text'
+                        label='estado'
+                        valor={estado}
+                        onChange={setEstado}
+                        placeholder='digite seu estado'
+                    />
+                    <BotaoCustomizado type='submit'>Avançar</BotaoCustomizado>
+                </Formulario>
+                <>
                 </>
             </>
         </>
