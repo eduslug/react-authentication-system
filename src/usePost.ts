@@ -8,6 +8,9 @@ export default function usePost() {
     try {
       await fetch(`http://localhost:8080/${url}`, {
         method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
         body: JSON.stringify(dados),
       });
       setSuceso(true);

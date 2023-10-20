@@ -7,6 +7,7 @@ import Botao from '../../components/Botao';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Iclinica from '../../types/Iclinica';
 import usePost from '../../usePost';
+import Container from '../../components/Container';
 
 const Imagem = styled.img`
   padding: 2em 0;
@@ -72,12 +73,11 @@ export default function Cadastro() {
     const [estado, setEstado] = useState('');
     const navigate = useNavigate();
     const { cadastrar, erro, sucesso } = usePost();
-    const [etapaAtiva, setEtapaAtiva] = useState();
+    const [etapaAtiva, setEtapaAtiva] = useState(0);
+    const navegate = useNavigate()
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        navigate('/login');
-        alert('login teste')
-        setSteppers(steppers.concat({ activeStep: 0 }));
 
         const clinica: Iclinica = {
             email: email,
@@ -94,10 +94,13 @@ export default function Cadastro() {
         if (etapaAtiva !== 0) {
             try {
                 cadastrar({ url: 'clinica', dados: clinica })
+                navegate('/login');
             } catch (erro) {
                 erro && alert('Erro ao cadastrar os dados')
             }
+
         }
+        setEtapaAtiva(etapaAtiva + 1); // atualizar o estado para o proximo steper
 
     };
     return (
@@ -119,71 +122,96 @@ export default function Cadastro() {
                     ></StepLabel>
                 </Step>
             </Stepper>
-            <>
-                <Titulo>Primeiro, alguns dados básicos:</Titulo>
-                <Formulario onSubmit={handleSubmit}>
-                    <CampoDigitacao
-                        tipo='text'
-                        label='nome'
-                        valor={nome}
-                        onChange={setNome}
-                        placeholder='Digite seu nome'
-                    />
-                    <CampoDigitacao
-                        tipo='text'
-                        label='Cnpj'
-                        valor={cnpj}
-                        onChange={setCnpj}
-                        placeholder='Digite seu nome'
-                    />
-                    <CampoDigitacao
-                        tipo='email'
-                        label='email'
-                        valor={email}
-                        onChange={setEmail}
-                        placeholder='Digite seu nome'
-                    />
-                    <CampoDigitacao
-                        tipo='password'
-                        label='senha'
-                        valor={senha}
-                        onChange={setSenha}
-                        placeholder='Digite seu nome'
-                    />
-                    <CampoDigitacao
-                        tipo='password'
-                        label='Repita'
-                        valor={telefone}
-                        onChange={setTelefone}
-                        placeholder='Digite seu nome'
-                    />
-                    <Titulo>Agora, os dados técnicos:</Titulo>
-                    <CampoDigitacao
-                        tipo='text'
-                        label='cep'
-                        valor={cep}
-                        onChange={setCep}
-                        placeholder='digite seu CEP:'
-                    />
-                    <CampoDigitacao
-                        tipo='text'
-                        label='rua'
-                        valor={rua}
-                        onChange={setRua}
-                        placeholder='digite sua rua'
-                    />
-                    <CampoDigitacao
-                        tipo='text'
-                        label='estado'
-                        valor={estado}
-                        onChange={setEstado}
-                        placeholder='digite seu estado'
-                    />
-                    <BotaoCustomizado type='submit'>Avançar</BotaoCustomizado>
-                </Formulario>
+            {etapaAtiva === 0 ? (
                 <>
+                    <Titulo>Primeiro, alguns dados básicos:</Titulo>
+                    <Formulario onSubmit={handleSubmit}>
+                        <CampoDigitacao
+                            tipo="text"
+                            label="Nome"
+                            valor={nome}
+                            placeholder="Insira seu nome"
+                            onChange={setNome}
+                        />
+                        <CampoDigitacao
+                            tipo="text"
+                            label="CNPJ"
+                            valor={cnpj}
+                            placeholder="Insira seu cnpj"
+                            onChange={setCnpj}
+                        />
+                        <CampoDigitacao
+                            tipo="email"
+                            label="Email"
+                            valor={email}
+                            placeholder="Insira o endereço de e-mail para login"
+                            onChange={setEmail}
+                        />
+                        <CampoDigitacao
+                            tipo="password"
+                            label="Senha"
+                            valor={senha}
+                            placeholder="Digite sua senha"
+                            onChange={setSenha}
+                        />
+                        {/* <CampoDigitacao
+                            tipo="password"
+                            label="Confirme a senha"
+                            valor={senhaVerificada}
+                            placeholder="Confirme sua senha"
+                            onChange={setSenhaVerificada}
+                        /> */}
+                        <BotaoCustomizado type="submit">Avançar</BotaoCustomizado>
+                    </Formulario>
+                </>) : (
+                <>
+                    <Titulo>Agora, os dados técnicos:</Titulo>
+                    <Formulario onSubmit={handleSubmit}>
+                        <CampoDigitacao
+                            tipo="tel"
+                            label="Telefone"
+                            valor={telefone}
+                            placeholder="(DDD) XXXXX-XXXX"
+                            onChange={setTelefone}
+                        />
+                        <CampoDigitacao
+                            tipo="number"
+                            label="CEP"
+                            valor={cep}
+                            placeholder="Insira o CEP"
+                            onChange={setCep}
+                        />
+                        <CampoDigitacao
+                            tipo="text"
+                            label="Rua"
+                            valor={rua}
+                            placeholder="Rua"
+                            onChange={setRua}
+                        />
+                        <Container>
+                            <CampoDigitacao
+                                tipo="number"
+                                valor={numero}
+                                placeholder="Número"
+                                onChange={setNumero}
+                            />
+                            <CampoDigitacao
+                                tipo="text"
+                                valor={complemento}
+                                placeholder="Complemento"
+                                onChange={setComplemento}
+                            />
+                            <CampoDigitacao
+                                tipo="text"
+                                valor={estado}
+                                placeholder="Estado"
+                                onChange={setEstado}
+                            />
+                        </Container>
+                        <BotaoCustomizado type="submit">Cadastrar</BotaoCustomizado>
+                    </Formulario>
                 </>
-            </>
+    )}
         </>
     );
 }
