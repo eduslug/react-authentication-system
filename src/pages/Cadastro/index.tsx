@@ -69,7 +69,6 @@ export default function Cadastro() {
     const [rua, setRua] = useState('');
     const [complemento, setComplemento] = useState('');
     const [numero, setNumero] = useState('');
-    const [steppers, setSteppers] = useState([{ activeStep: 0 }]);
     const [estado, setEstado] = useState('');
     const navigate = useNavigate();
     const { cadastrar, erro, sucesso } = usePost();
@@ -93,7 +92,7 @@ export default function Cadastro() {
         }
         if (etapaAtiva !== 0) {
             try {
-                cadastrar({ url: 'clinica', dados: clinica })
+                cadastrar({ url: 'clinica', dados: clinica })//logica de aprovação, redirecionamento login
                 navegate('/login');
             } catch (erro) {
                 erro && alert('Erro ao cadastrar os dados')
@@ -211,7 +210,7 @@ export default function Cadastro() {
                         <BotaoCustomizado type="submit">Cadastrar</BotaoCustomizado>
                     </Formulario>
                 </>
-    )}
+            )}
         </>
     );
 }

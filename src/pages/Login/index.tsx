@@ -1,10 +1,13 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CampoDigitacao from '../../components/CampoInput';
 import Botao from '../../components/Botao';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import logo from './logo.png'
+import ILogin from '../../types/ILogin';
+import usePost from '../../usePost';
+
 
 const Imagem = styled.img`
   padding: 2em 0;
@@ -53,13 +56,27 @@ const BotaoCustomizado = styled(Botao)`
 export default function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const { cadastrar, sucesso, erro } = usePost();
 
-  console.log(senha, email)
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const usuario: ILogin = {
+      email: email,
+      senha: senha
+    }
+
+    try {
+      cadastrar({ url: "auth/login", dados: usuario})
+    } catch (erro) {
+      erro && alert('nao foi possivel cadastrar')
+    }
+
+  }
   return (
     <div>
-    <Imagem src={logo} alt='logo'/>
+      <Imagem src={logo} alt='logo' />
       <Titulo>Faça login em sua conta</Titulo>
-      <Formulario>
+      <Formulario onSubmit={handleFormSubmit}>
         <CampoDigitacao tipo="email" label="Email" valor={email} placeholder="Insira seu endereço de email" onChange={setEmail} />
         <CampoDigitacao tipo='password' valor={senha} label='Senha' placeholder='Insira sua senha' onChange={setSenha} />
         <BotaoCustomizado type="submit">Entrar</BotaoCustomizado>
