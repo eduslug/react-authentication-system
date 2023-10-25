@@ -49,10 +49,6 @@ const BotaoCustomizado = styled(Botao)`
   width: 100%;
   cursor: pointer;
 `;
-
-
-
-
 export default function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -66,9 +62,9 @@ export default function Login() {
     }
 
     try {
-      cadastrar({ url: "auth/login", dados: usuario})
+      cadastrar({ url: "auth/login", dados: usuario })
     } catch (erro) {
-      erro && alert('nao foi possivel cadastrar')
+      erro && alert('Não foi possível fazer login')
     }
 
   }
