@@ -1,4 +1,4 @@
-import { makeAutoObservable, observable } from "mobx";
+import { action, makeAutoObservable, observable } from "mobx";
 
 interface IUsuario {
   email: string;
@@ -13,7 +13,18 @@ class AutenticaStores {
     makeAutoObservable(this, {
       altenticado: observable,
       usuario: observable,
+      login: action,
+      logout: action,
     });
+  }
+
+  login({ email, token }: IUsuario) {
+    this.altenticado = true;
+    this.usuario = { email, token };
+  }
+  logout({ email, token }: IUsuario) {
+    this.altenticado = false;
+    this.usuario = { email: "", token: "" };
   }
 }
 const autenticaStores = new AutenticaStores();
