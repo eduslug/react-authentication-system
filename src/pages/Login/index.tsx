@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import logo from './logo.png'
 import ILogin from '../../types/ILogin';
 import usePost from '../../usePost';
+import autenticaStores from '../../stores/auth.stores';
 
 
 const Imagem = styled.img`
@@ -52,7 +53,7 @@ const BotaoCustomizado = styled(Botao)`
 export default function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const { cadastrar, sucesso, erro } = usePost();
+  const { cadastrar, sucesso, erro, resposta } = usePost();
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -63,6 +64,7 @@ export default function Login() {
 
     try {
       cadastrar({ url: "auth/login", dados: usuario })
+      autenticaStores.login({ email: email, token: resposta })
     } catch (erro) {
       erro && alert('Não foi possível fazer login')
     }
