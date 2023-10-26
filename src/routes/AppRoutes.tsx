@@ -5,6 +5,7 @@ import PaginaInicial from "../pages/PaginaInicial";
 import PaginaFormulario from "../pages/PaginaBaseFormulario/index";
 import Login from '../pages/Login/index';
 import Cadastro from "../pages/Cadastro";
+import RotaPrivada from "../utils/RotaPrivada";
 
 function AppRoutes() {
 
@@ -13,14 +14,16 @@ function AppRoutes() {
             <Routes>
                 <Route path="/" element={<BasePagina />}>
                     <Route index element={<PaginaInicial />} />
-                    <Route path="/dashboard" element={<Dashbord />} />
+                    <Route element={<RotaPrivada />}>
+                        <Route path="/dashboard" element={<Dashbord />} />
+                    </Route>
                 </Route>
                 <Route path="/" element={<PaginaFormulario />}>
                     <Route path="/login" element={<Login />} />
                     <Route path="/cadastro" element={<Cadastro />} />
                 </Route>
-            </Routes>
-        </BrowserRouter>
+            </Routes >
+        </BrowserRouter >
     )
 }
 

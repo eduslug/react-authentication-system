@@ -8,4 +8,4 @@ const RotaPrivada = () => {
     )
 }
 
-export default RotaPrivada;
+export default RotaPrivada; 
